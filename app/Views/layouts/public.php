@@ -44,7 +44,6 @@ $liens = [
 <body>
     <a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
-    <div class="tricolore" aria-hidden="true"><span></span><span></span><span></span></div>
     <header class="entete">
         <div class="conteneur entete__barre">
             <a class="marque" href="<?= e(url('/')) ?>">
