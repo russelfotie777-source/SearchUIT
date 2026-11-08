@@ -7,6 +7,7 @@ use App\Controllers\Admin\ConnexionController;
 use App\Controllers\Admin\EtudiantsController;
 use App\Controllers\Admin\FichiersController;
 use App\Controllers\Admin\ImportsController;
+use App\Controllers\Admin\ReglagesController;
 use App\Controllers\DocumentsController;
 use App\Controllers\FicheController;
 use App\Controllers\InstallationController;
@@ -57,4 +58,14 @@ return static function (Router $routes): void {
     $routes->post('/admin/etudiants', [EtudiantsController::class, 'creer']);
     $routes->post('/admin/etudiants/{id}/{action}', [EtudiantsController::class, 'action']);
     $routes->get('/admin/historique', [EtudiantsController::class, 'historique']);
+
+    // Réglages.
+    $routes->get('/admin/reglages', [ReglagesController::class, 'index']);
+    $routes->post('/admin/reglages/infos', [ReglagesController::class, 'infos']);
+    $routes->post('/admin/reglages/legende', [ReglagesController::class, 'legende']);
+    $routes->post('/admin/reglages/mot-de-passe', [ReglagesController::class, 'motDePasse']);
+    $routes->post('/admin/reglages/comptes', [ReglagesController::class, 'ajouterCompte']);
+    $routes->post('/admin/reglages/comptes/{id}/supprimer', [ReglagesController::class, 'supprimerCompte']);
+    $routes->get('/admin/reglages/affiche', [ReglagesController::class, 'affiche']);
+    $routes->get('/admin/reglages/qr.svg', [ReglagesController::class, 'qrSvg']);
 };
