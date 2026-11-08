@@ -1,0 +1,23 @@
+# Configuration locale (identifiants de la base de données)
+/config/config.php
+
+# Fichiers déposés depuis l'administration et fichiers générés
+/storage/uploads/*
+/storage/cache/*
+/storage/logs/*
+!/storage/**/.gitkeep
+!/storage/**/.htaccess
+
+# Listes sources des étudiants : données personnelles, jamais dans le dépôt
+/*.xlsx
+/*.xls
+/*.csv
+/*.pdf
+/donnees/
+
+# Éditeurs et système
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
