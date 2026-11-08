@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="<?= e(asset('css/admin.css')) ?>">
 </head>
 <body class="connexion">
-    <div class="tricolore" aria-hidden="true"><span></span><span></span><span></span></div>
     <main class="connexion__colonne">
         <?= $contenu ?>
     </main>
