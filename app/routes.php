@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Controllers\Admin\AccueilController as AdminAccueil;
+use App\Controllers\Admin\ConnexionController;
 use App\Controllers\DocumentsController;
 use App\Controllers\FicheController;
 use App\Controllers\InstallationController;
@@ -25,4 +27,10 @@ return static function (Router $routes): void {
     $routes->get('/documents', [DocumentsController::class, 'index']);
     $routes->get('/documents/{id}', [DocumentsController::class, 'fichier']);
     $routes->get('/documents/{id}/{nom}', [DocumentsController::class, 'fichier']);
+
+    // Administration.
+    $routes->get('/admin', [AdminAccueil::class, 'index']);
+    $routes->get('/admin/connexion', [ConnexionController::class, 'afficher']);
+    $routes->post('/admin/connexion', [ConnexionController::class, 'connecter']);
+    $routes->post('/admin/deconnexion', [ConnexionController::class, 'deconnecter']);
 };
