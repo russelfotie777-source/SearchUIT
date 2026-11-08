@@ -7,14 +7,24 @@ namespace App\Controllers;
 use App\Core\Request;
 use App\Core\Response;
 use App\Core\View;
+use App\Repositories\Etudiants;
+use App\Repositories\Legende;
 
 final class PagesController
 {
     public function accueil(Request $requete): Response
     {
+        $saisie = mb_substr($requete->texte('q'), 0, 120);
+        $statistiques = Etudiants::statistiques();
+
         return Response::html(View::page('public/accueil', [
-            'titre' => 'Vos effets académiques',
+            'titre' => $saisie !== '' ? 'Recherche « ' . $saisie . ' »' : 'Vos effets académiques',
             'pageActive' => 'recherche',
+            'saisie' => $saisie,
+            'recherche' => $saisie !== '' ? Etudiants::rechercher($saisie) : null,
+            'statistiques' => $statistiques,
+            'legende' => Legende::utilisee($statistiques['codes']),
+            'scripts' => ['js/recherche.js'],
         ]));
     }
 }

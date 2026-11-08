@@ -88,8 +88,9 @@ function date_fr(DateTimeInterface|string|null $date, bool $heure = false): stri
     if (is_string($date)) {
         $date = new DateTimeImmutable($date);
     }
-    $texte = (int) $date->format('j') . ($date->format('j') === '1' ? 'er' : '') . ' '
-        . MOIS_FR[(int) $date->format('n')] . ' ' . $date->format('Y');
+    // Espaces insécables : « 8 novembre 2026 » ne se coupe pas en fin de ligne.
+    $texte = (int) $date->format('j') . ($date->format('j') === '1' ? 'er' : '') . "\u{00A0}"
+        . MOIS_FR[(int) $date->format('n')] . "\u{00A0}" . $date->format('Y');
     if ($heure) {
         $texte .= ' à ' . $date->format('H\hi');
     }
