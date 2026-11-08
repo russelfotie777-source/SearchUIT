@@ -38,12 +38,4 @@
 
     <a class="connexion__retour" href="<?= e(url('/')) ?>"><?= icone('retour', 'icone icone--petite') ?>Retour au site</a>
 </div>
-<script>
-    document.querySelector("[data-voir-mdp]").addEventListener("click", function () {
-        var champ = document.getElementById("mot_de_passe");
-        var visible = champ.type === "text";
-        champ.type = visible ? "password" : "text";
-        this.setAttribute("aria-pressed", String(!visible));
-        this.setAttribute("aria-label", visible ? "Afficher le mot de passe" : "Masquer le mot de passe");
-    });
-</script>
+<script src="<?= e(asset('js/connexion.js')) ?>"></script>

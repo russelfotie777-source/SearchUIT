@@ -17,9 +17,21 @@ final class Response
     ) {
     }
 
+    /**
+     * Scripts et styles du site uniquement : un script injecté dans une page ne s'exécuterait pas.
+     * Les styles en ligne restent permis pour les variables CSS posées dans les gabarits.
+     */
+    public const POLITIQUE_CONTENU = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "
+        . "img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'self'; "
+        . "frame-ancestors 'self'; base-uri 'self'; form-action 'self'";
+
     public static function html(string $corps, int $statut = 200): self
     {
-        return (new self($corps, $statut))->entete('Content-Type', 'text/html; charset=utf-8');
+        return (new self($corps, $statut))
+            ->entete('Content-Type', 'text/html; charset=utf-8')
+            ->entete('Content-Security-Policy', self::POLITIQUE_CONTENU)
+            ->entete('X-Content-Type-Options', 'nosniff')
+            ->entete('Referrer-Policy', 'strict-origin-when-cross-origin');
     }
 
     public static function json(mixed $donnees, int $statut = 200): self
