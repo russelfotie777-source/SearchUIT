@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Controllers\Admin\AccueilController as AdminAccueil;
 use App\Controllers\Admin\ConnexionController;
 use App\Controllers\Admin\FichiersController;
+use App\Controllers\Admin\ImportsController;
 use App\Controllers\DocumentsController;
 use App\Controllers\FicheController;
 use App\Controllers\InstallationController;
@@ -44,4 +45,9 @@ return static function (Router $routes): void {
     $routes->post('/admin/dossiers/{id}/{action}', [FichiersController::class, 'actionDossier']);
     $routes->get('/admin/corbeille', [FichiersController::class, 'corbeille']);
     $routes->post('/admin/corbeille/vider', [FichiersController::class, 'viderCorbeille']);
+
+    // Publication des listes dans la recherche.
+    $routes->post('/admin/imports/analyser', [ImportsController::class, 'analyser']);
+    $routes->post('/admin/imports', [ImportsController::class, 'importer']);
+    $routes->post('/admin/imports/{id}/annuler', [ImportsController::class, 'annuler']);
 };

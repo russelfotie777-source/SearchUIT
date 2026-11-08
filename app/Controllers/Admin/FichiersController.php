@@ -84,6 +84,7 @@ final class FichiersController extends AdminController
         return Response::json([
             'ok' => true,
             'doublon' => $resultat['doublon'],
+            'liste' => ImportsController::decrire($fichier),
             'message' => $resultat['doublon'] ? "« {$fichier['nom']} » est déjà dans ce dossier." : null,
             'fichier' => [
                 'id' => (int) $fichier['id'],
