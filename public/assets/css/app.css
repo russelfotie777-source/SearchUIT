@@ -1253,6 +1253,7 @@ textarea.saisie {
 
 .legende__ligne dt {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
 }
@@ -1358,9 +1359,8 @@ textarea.saisie {
   }
 
   .legende__ligne {
-    grid-template-columns: 120px minmax(0, 1fr);
-    align-items: baseline;
-    padding-right: 0;
+    gap: 6px;
+    padding: 14px 0;
   }
 }
 
