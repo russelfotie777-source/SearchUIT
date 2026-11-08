@@ -1,0 +1,154 @@
+/* Pages d'installation. */
+
+.installation {
+  background: var(--fond);
+}
+
+.installation__colonne {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 48px var(--gouttiere) 80px;
+}
+
+.installation__logo {
+  width: 64px;
+  height: auto;
+}
+
+.installation h1 {
+  margin-top: 24px;
+  font-size: var(--t-7);
+  font-stretch: 78%;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.installation h2 {
+  margin: 32px 0 12px;
+  font-size: var(--t-4);
+  font-weight: 650;
+}
+
+.installation h2:first-child {
+  margin-top: 0;
+}
+
+.installation__intro {
+  margin-bottom: 20px;
+  color: var(--encre-2);
+}
+
+.installation__carte {
+  margin-top: 24px;
+  padding: 32px;
+  border: 1px solid var(--trait);
+  border-radius: var(--r-3);
+  background: var(--papier);
+  box-shadow: var(--ombre-2);
+}
+
+.installation__carte > .message {
+  margin-bottom: 24px;
+}
+
+.etapes {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  list-style: none;
+  font-size: var(--t-2);
+  color: var(--encre-3);
+}
+
+.etapes__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.etapes__pastille {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--trait-fort);
+  border-radius: 50%;
+  background: var(--papier);
+  font-size: var(--t-1);
+  font-weight: 700;
+}
+
+.etapes__item.est-courante {
+  color: var(--encre);
+  font-weight: 600;
+}
+
+.etapes__item.est-courante .etapes__pastille {
+  border-color: var(--vert-action);
+  background: var(--vert-action);
+  color: #fff;
+}
+
+.etapes__item.est-faite .etapes__pastille {
+  border-color: var(--vert-pale);
+  background: var(--vert-pale);
+  color: var(--vert-fonce);
+}
+
+.verifications {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+
+.verifications li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.9375rem;
+}
+
+.verifications .icone {
+  margin-top: 2px;
+}
+
+.verifications .est-ok .icone {
+  color: var(--vert-action);
+}
+
+.verifications .est-ko {
+  color: var(--rouge-action);
+}
+
+.verifications small {
+  display: block;
+  font-size: var(--t-2);
+  color: var(--encre-2);
+}
+
+.formulaire {
+  display: grid;
+  gap: 18px;
+}
+
+.formulaire__ligne {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 12px;
+}
+
+.formulaire .btn {
+  justify-self: start;
+  margin-top: 8px;
+}
+
+@media (max-width: 520px) {
+  .installation__carte {
+    padding: 20px;
+  }
+
+  .formulaire__ligne {
+    grid-template-columns: 1fr 96px;
+  }
+}
