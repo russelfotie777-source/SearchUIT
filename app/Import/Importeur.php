@@ -125,7 +125,7 @@ final class Importeur
             Journal::ajouter(
                 $utilisateurId,
                 $mode === self::REMPLACEMENT ? 'Liste remplacée' : 'Liste ajoutée',
-                sprintf('%s : %d étudiants', $nomSource, $ajoutes),
+                $nomSource . ' : ' . pluriel($ajoutes, 'étudiant'),
             );
 
             return [
@@ -152,7 +152,7 @@ final class Importeur
             $supprimes = Database::requete('DELETE FROM etudiants WHERE import_id = ?', [$importId])->rowCount();
             Database::requete('UPDATE imports SET annule_le = NOW() WHERE id = ?', [$importId]);
             Parametres::set('liste_mise_a_jour', date('Y-m-d H:i:s'));
-            Journal::ajouter($utilisateurId, 'Import annulé', sprintf('%s : %d étudiants retirés de la recherche', $import['nom_source'], $supprimes));
+            Journal::ajouter($utilisateurId, 'Publication annulée', $import['nom_source'] . ' : ' . pluriel($supprimes, 'étudiant') . ' retiré' . ($supprimes > 1 ? 's' : '') . ' de la recherche');
             return $supprimes;
         });
     }
