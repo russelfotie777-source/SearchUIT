@@ -139,6 +139,9 @@ $tousLesDossiers = Fichiers::tousLesDossiers();
                             <div class="menu__panneau" role="menu">
                                 <a class="menu__item" role="menuitem" href="<?= e($ouvrir) ?>" target="_blank" rel="noopener"><?= icone('lien-externe') ?>Ouvrir</a>
                                 <a class="menu__item" role="menuitem" href="<?= e($ouvrir . '?telecharger=1') ?>"><?= icone('telecharger') ?>Télécharger</a>
+                                <?php if (in_array($extension, App\Import\AnalyseurListe::EXTENSIONS, true)): ?>
+                                    <button class="menu__item" role="menuitem" type="button" data-action="publier-liste"><?= icone('etudiants') ?>Publier comme liste d'étudiants</button>
+                                <?php endif; ?>
                                 <button class="menu__item" role="menuitem" type="button" data-action="renommer-fichier"><?= icone('modifier') ?>Renommer</button>
                                 <button class="menu__item" role="menuitem" type="button" data-action="deplacer-fichier"><?= icone('deplacer') ?>Déplacer</button>
                                 <button class="menu__item" role="menuitem" type="button" data-action="basculer-visibilite"><?= icone($public ? 'masque' : 'visible') ?><?= $public ? 'Masquer du site' : 'Publier sur le site' ?></button>

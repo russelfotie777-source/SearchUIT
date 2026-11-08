@@ -330,7 +330,7 @@ final class FichiersController extends AdminController
             'fichiers' => $fichiers,
             'arborescence' => Drive::arborescence(),
             'tailleMax' => self::tailleMax(),
-            'scripts' => ['js/drive.js'],
+            'scripts' => ['js/drive.js', 'js/import-liste.js'],
         ];
     }
 }

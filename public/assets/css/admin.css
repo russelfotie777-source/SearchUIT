@@ -1315,3 +1315,117 @@
     width: calc(100vw - 16px);
   }
 }
+
+/* ---------- Publication d'une liste ---------- */
+
+.dialogue:has(.import-liste) {
+  width: min(640px, calc(100vw - 32px));
+}
+
+.import-liste {
+  margin-top: 12px;
+}
+
+.import-liste__resume {
+  font-weight: 550;
+}
+
+.import-liste__colonnes {
+  margin-top: 4px;
+  font-size: var(--t-2);
+  color: var(--encre-3);
+}
+
+.import-liste__avertissement {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-left: 3px solid var(--jaune);
+  background: #fffaeb;
+  font-size: var(--t-2);
+}
+
+.import-liste__defilement {
+  margin-top: 14px;
+  overflow-x: auto;
+  border: 1px solid var(--trait);
+  border-radius: 10px;
+}
+
+.import-liste__apercu {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-2);
+}
+
+.import-liste__apercu caption {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--trait);
+  background: var(--fond);
+  font-size: var(--t-1);
+  font-weight: 650;
+  color: var(--encre-2);
+  text-align: left;
+}
+
+.import-liste__apercu th,
+.import-liste__apercu td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--trait);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.import-liste__apercu th {
+  font-size: var(--t-1);
+  font-weight: 650;
+  color: var(--encre-3);
+}
+
+.import-liste__apercu tr:last-child td {
+  border-bottom: 0;
+}
+
+.import-liste__modes {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.import-liste__modes legend {
+  margin-bottom: 8px;
+  font-weight: 650;
+}
+
+.import-liste__choix {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--trait-fort);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.import-liste__choix input {
+  margin-top: 4px;
+}
+
+.import-liste__choix:has(input:checked) {
+  border-color: var(--vert-action);
+  background: var(--vert-pale);
+  box-shadow: inset 0 0 0 1px var(--vert-action);
+}
+
+.import-liste__choix span {
+  display: grid;
+  gap: 2px;
+  font-size: var(--t-2);
+  color: var(--encre-2);
+}
+
+.import-liste__choix strong {
+  font-size: 0.9375rem;
+  color: var(--encre);
+}
