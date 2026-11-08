@@ -1429,3 +1429,272 @@
   font-size: 0.9375rem;
   color: var(--encre);
 }
+
+/* ---------- Étudiants ---------- */
+
+.etudiants-resume {
+  max-width: 80ch;
+  margin: -4px 0 20px;
+  color: var(--encre-2);
+}
+
+.etudiants-outils {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.etudiants-outils .selection {
+  width: auto;
+  height: 38px;
+  font-size: var(--t-2);
+}
+
+.etudiants-outils__recherche {
+  display: flex;
+  gap: 12px;
+  font-size: var(--t-2);
+  font-weight: 600;
+}
+
+.segments {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--fond);
+}
+
+.segments a {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: var(--encre-2);
+  font-size: var(--t-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.segments a:hover {
+  color: var(--encre);
+}
+
+.segments a[aria-current="page"] {
+  background: var(--papier);
+  color: var(--encre);
+  box-shadow: var(--ombre-1), 0 0 0 1px var(--trait);
+}
+
+.tableau-defilement {
+  overflow-x: auto;
+}
+
+.tableau {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-2);
+}
+
+.tableau th,
+.tableau td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--trait);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tableau thead th {
+  height: 40px;
+  padding-block: 0;
+  font-weight: 600;
+  color: var(--encre-2);
+  white-space: nowrap;
+}
+
+.tableau tbody th {
+  font-weight: 600;
+}
+
+.tableau tbody tr:hover {
+  background: #f6f9f7;
+}
+
+.tableau small {
+  display: block;
+  font-size: var(--t-1);
+  font-weight: 500;
+  color: var(--encre-3);
+}
+
+.tableau__nom {
+  font-size: 0.9375rem;
+  font-stretch: 92%;
+  letter-spacing: 0.01em;
+}
+
+.tableau__nom mark {
+  border-radius: 2px;
+  background: var(--surligneur);
+  color: inherit;
+}
+
+.tableau--etudiants .est-retire .tableau__nom {
+  color: var(--encre-2);
+}
+
+.tableau__actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right !important;
+}
+
+.tableau__actions > * {
+  vertical-align: middle;
+}
+
+.tableau__actions .menu {
+  display: inline-block;
+}
+
+.tableau__actions .btn--secondaire .icone {
+  color: var(--vert-action);
+}
+
+.imports {
+  margin-top: 48px;
+}
+
+.imports h2 {
+  font-size: var(--t-5);
+  font-weight: 650;
+}
+
+.imports > p {
+  max-width: 80ch;
+  margin: 4px 0 12px;
+  font-size: var(--t-2);
+  color: var(--encre-3);
+}
+
+.formulaire-etudiant {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 12px;
+  margin-top: 18px;
+}
+
+.formulaire-etudiant .champ--large {
+  grid-column: 1 / -1;
+}
+
+.formulaire-etudiant .saisie {
+  margin-top: 0;
+}
+
+.dialogue:has(.formulaire-etudiant) {
+  width: min(560px, calc(100vw - 32px));
+}
+
+/* ---------- Historique ---------- */
+
+.historique {
+  max-width: 880px;
+  margin-bottom: 28px;
+}
+
+.historique h2 {
+  margin-bottom: 8px;
+  font-size: var(--t-2);
+  font-weight: 650;
+  color: var(--encre-2);
+}
+
+.historique ol {
+  list-style: none;
+  border-top: 1px solid var(--trait);
+}
+
+.historique li {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--trait);
+  font-size: var(--t-2);
+}
+
+.historique time {
+  color: var(--encre-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.historique__texte {
+  display: grid;
+}
+
+.historique__texte strong {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.historique__texte span {
+  overflow-wrap: anywhere;
+  color: var(--encre-2);
+}
+
+.historique__auteur {
+  color: var(--encre-3);
+}
+
+@media (max-width: 900px) {
+  .tableau--etudiants thead {
+    display: none;
+  }
+
+  .tableau--etudiants,
+  .tableau--etudiants tbody {
+    display: block;
+  }
+
+  .tableau--etudiants tr {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 4px 12px;
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--trait);
+  }
+
+  .tableau--etudiants th,
+  .tableau--etudiants td {
+    padding: 0;
+    border: 0;
+  }
+
+  .tableau--etudiants th,
+  .tableau--etudiants td:nth-child(4),
+  .tableau--etudiants .tableau__actions {
+    grid-column: 1 / -1;
+  }
+
+  .tableau--etudiants .tableau__actions {
+    width: auto;
+    margin-top: 8px;
+    text-align: left !important;
+  }
+
+  .formulaire-etudiant {
+    grid-template-columns: 1fr;
+  }
+
+  .historique li {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .historique__auteur {
+    grid-column: 2;
+  }
+}
