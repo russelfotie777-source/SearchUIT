@@ -105,6 +105,94 @@ final class Etudiants
         return Database::un('SELECT * FROM etudiants WHERE reference = ?', [$reference]);
     }
 
+    /** Tris proposés sur la liste complète. */
+    public const TRIS = [
+        'nom' => ['Nom (A à Z)', 'nom_recherche ASC, annee_debut DESC'],
+        'recent' => ['Année la plus récente', 'annee_debut IS NULL, annee_debut DESC, nom_recherche ASC'],
+        'ancien' => ['Année la plus ancienne', 'annee_debut IS NULL, annee_debut ASC, nom_recherche ASC'],
+        'filiere' => ['Filière', 'filiere_code IS NULL, filiere_code ASC, filiere ASC, nom_recherche ASC'],
+    ];
+
+    /**
+     * Liste filtrée et paginée.
+     *
+     * @param array{nom?: string, filiere?: string, annee?: int|string, document?: string, statut?: string, tri?: string} $filtres
+     * @return array{total: int, lignes: list<array<string, mixed>>, page: int, pages: int}
+     */
+    public static function lister(array $filtres, int $page = 1, int $parPage = 50): array
+    {
+        $conditions = [];
+        $parametres = [];
+
+        foreach (Recherche::mots((string) ($filtres['nom'] ?? '')) as $mot) {
+            $conditions[] = "CONCAT(' ', nom_recherche) LIKE ?";
+            $parametres[] = '% ' . self::echapperLike($mot) . '%';
+        }
+        if (($filtres['filiere'] ?? '') !== '') {
+            $conditions[] = 'filiere_code = ?';
+            $parametres[] = $filtres['filiere'];
+        }
+        if (($filtres['annee'] ?? '') !== '' && is_numeric($filtres['annee'])) {
+            $conditions[] = 'annee_debut = ?';
+            $parametres[] = (int) $filtres['annee'];
+        }
+        if (($filtres['document'] ?? '') !== '') {
+            $conditions[] = 'codes LIKE ?';
+            $parametres[] = '%,' . self::echapperLike((string) $filtres['document']) . ',%';
+        }
+        $statut = $filtres['statut'] ?? 'disponible';
+        if ($statut === 'disponible' || $statut === 'retire') {
+            $conditions[] = 'statut = ?';
+            $parametres[] = $statut;
+        }
+
+        $where = $conditions === [] ? '' : 'WHERE ' . implode(' AND ', $conditions);
+        $total = (int) Database::valeur("SELECT COUNT(*) FROM etudiants {$where}", $parametres);
+
+        $pages = max(1, (int) ceil($total / $parPage));
+        $page = max(1, min($page, $pages));
+        $ordre = self::TRIS[$filtres['tri'] ?? 'nom'][1] ?? self::TRIS['nom'][1];
+
+        $lignes = Database::tous(
+            "SELECT * FROM etudiants {$where} ORDER BY {$ordre} LIMIT " . (int) $parPage . ' OFFSET ' . (int) (($page - 1) * $parPage),
+            $parametres,
+        );
+
+        return ['total' => $total, 'lignes' => $lignes, 'page' => $page, 'pages' => $pages];
+    }
+
+    /**
+     * Filières présentes sur la liste, avec leur nombre d'étudiants.
+     *
+     * @return list<array{code: string, nombre: int}>
+     */
+    public static function filieres(): array
+    {
+        return Cache::souvenir('filieres', self::version(), static fn (): array => array_map(
+            static fn (array $l): array => ['code' => (string) $l['code'], 'nombre' => (int) $l['nombre']],
+            Database::tous(
+                "SELECT filiere_code AS code, COUNT(*) AS nombre FROM etudiants
+                 WHERE filiere_code IS NOT NULL AND filiere_code <> '' GROUP BY filiere_code ORDER BY filiere_code",
+            ),
+        ));
+    }
+
+    /**
+     * Années de début présentes sur la liste, de la plus récente à la plus ancienne.
+     *
+     * @return list<array{annee: int, nombre: int}>
+     */
+    public static function annees(): array
+    {
+        return Cache::souvenir('annees', self::version(), static fn (): array => array_map(
+            static fn (array $l): array => ['annee' => (int) $l['annee'], 'nombre' => (int) $l['nombre']],
+            Database::tous(
+                'SELECT annee_debut AS annee, COUNT(*) AS nombre FROM etudiants
+                 WHERE annee_debut IS NOT NULL GROUP BY annee_debut ORDER BY annee_debut DESC',
+            ),
+        ));
+    }
+
     /**
      * Chiffres affichés sur l'accueil.
      *
