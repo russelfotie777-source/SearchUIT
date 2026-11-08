@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Controllers\InstallationController;
 use App\Controllers\PagesController;
+use App\Controllers\RechercheController;
 use App\Core\Router;
 
 return static function (Router $routes): void {
@@ -14,4 +15,5 @@ return static function (Router $routes): void {
 
     // Site public.
     $routes->get('/', [PagesController::class, 'accueil']);
+    $routes->get('/api/recherche', [RechercheController::class, 'api']);
 };
