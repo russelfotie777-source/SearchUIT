@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Controllers\DocumentsController;
 use App\Controllers\FicheController;
 use App\Controllers\InstallationController;
 use App\Controllers\ListeController;
@@ -21,4 +22,7 @@ return static function (Router $routes): void {
     $routes->get('/fiche/{ref}', [FicheController::class, 'afficher']);
     $routes->get('/fiche/{ref}/pdf', [FicheController::class, 'pdf']);
     $routes->get('/liste', [ListeController::class, 'afficher']);
+    $routes->get('/documents', [DocumentsController::class, 'index']);
+    $routes->get('/documents/{id}', [DocumentsController::class, 'fichier']);
+    $routes->get('/documents/{id}/{nom}', [DocumentsController::class, 'fichier']);
 };
