@@ -1363,3 +1363,378 @@ textarea.saisie {
     padding-right: 0;
   }
 }
+
+/* ---------- Fiche d'état ---------- */
+
+.fiche-page {
+  padding-top: 28px;
+}
+
+.fil a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fiche-page__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 40px;
+  align-items: start;
+}
+
+.fiche {
+  position: relative;
+  padding: 36px 40px 40px;
+  border: 1px solid var(--trait);
+  border-radius: 4px;
+  background: var(--papier);
+  box-shadow: 0 1px 1px rgb(15 42 29 / 0.04), 0 18px 48px -28px rgb(15 42 29 / 0.35);
+}
+
+/* Les couleurs du drapeau en tête de feuille, comme sur la fiche imprimée. */
+.fiche::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 4px;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(90deg, var(--vert) 0 33.33%, var(--rouge) 33.33% 66.66%, var(--jaune) 66.66%);
+}
+
+.fiche__entete {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--trait);
+}
+
+.fiche__entete img {
+  width: 40px;
+  height: auto;
+}
+
+.fiche__entete div {
+  display: grid;
+  line-height: 1.3;
+  font-size: var(--t-2);
+}
+
+.fiche__entete div span {
+  color: var(--encre-3);
+}
+
+.fiche__reference {
+  display: grid;
+  margin-left: auto;
+  text-align: right;
+  line-height: 1.2;
+}
+
+.fiche__reference span {
+  font-size: var(--t-1);
+  color: var(--encre-3);
+}
+
+.fiche__reference strong {
+  font-size: var(--t-5);
+  font-stretch: 80%;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+}
+
+.fiche__identite {
+  position: relative;
+  padding: 28px 0 24px;
+}
+
+.fiche__type {
+  font-size: var(--t-2);
+  color: var(--encre-3);
+}
+
+.fiche__nom {
+  max-width: calc(100% - 200px);
+  margin-top: 6px;
+  font-size: clamp(var(--t-6), 1.2rem + 1.6vw, var(--t-7));
+  font-stretch: 78%;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.005em;
+  overflow-wrap: anywhere;
+}
+
+.fiche__resume {
+  margin-top: 10px;
+  color: var(--encre-2);
+}
+
+/* Tampon encreur : bordure double, légère inclinaison, encre irrégulière. */
+.tampon {
+  position: absolute;
+  top: 34px;
+  right: 0;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 10px 18px 9px;
+  border: 3px solid currentColor;
+  border-radius: 10px;
+  outline: 1px solid currentColor;
+  outline-offset: -8px;
+  color: var(--vert);
+  text-transform: uppercase;
+  transform: rotate(-8deg);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Cfilter id='e'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23e)'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Cfilter id='e'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 2.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23e)'/%3E%3C/svg%3E");
+  -webkit-mask-size: 240px 120px;
+  mask-size: 240px 120px;
+  animation: tamponner 0.45s cubic-bezier(0.3, 0.7, 0.3, 1.15) 0.25s both;
+}
+
+.tampon__mot {
+  font-size: 26px;
+  font-stretch: 70%;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.tampon__ligne {
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.22em;
+}
+
+.tampon--retire {
+  color: var(--encre-3);
+}
+
+@keyframes tamponner {
+  from {
+    opacity: 0;
+    transform: rotate(-8deg) scale(1.5);
+  }
+  60% {
+    opacity: 0.95;
+  }
+}
+
+.fiche__infos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 18px 20px;
+  border-radius: var(--r-2);
+  background: var(--fond);
+}
+
+.fiche__infos dt {
+  font-size: var(--t-1);
+  color: var(--encre-3);
+}
+
+.fiche__infos dd {
+  margin: 2px 0 0;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.fiche__effets {
+  width: 100%;
+  margin-top: 28px;
+  border-collapse: collapse;
+}
+
+.fiche__effets th {
+  padding: 0 0 10px;
+  border-bottom: 1.5px solid var(--encre);
+  font-size: var(--t-1);
+  font-weight: 650;
+  color: var(--encre-3);
+  text-align: left;
+}
+
+.fiche__effets th:last-child,
+.fiche__effets td:last-child {
+  width: 1%;
+  padding-left: 16px;
+  white-space: nowrap;
+}
+
+.fiche__effets td {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--trait);
+  vertical-align: top;
+}
+
+.fiche__effets td:first-child {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.fiche__effets .puce {
+  min-width: 48px;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.fiche__document {
+  display: grid;
+}
+
+.fiche__document small {
+  font-size: var(--t-2);
+  color: var(--encre-3);
+}
+
+.fiche__annotation {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--jaune);
+  background: #fffaeb;
+  font-size: var(--t-2);
+  color: var(--encre-2);
+}
+
+.fiche__annotation .icone {
+  margin-top: 2px;
+  color: #a87700;
+}
+
+.fiche-actions {
+  position: sticky;
+  top: 24px;
+  display: grid;
+  gap: 12px;
+}
+
+.fiche-actions__secondaires {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.fiche-actions__secondaires .btn {
+  padding: 0 10px;
+}
+
+.fiche-actions__bloc {
+  margin-top: 12px;
+  padding: 22px;
+  border-radius: var(--r-3);
+  background: var(--fond);
+}
+
+.fiche-actions__bloc h2 {
+  font-size: var(--t-3);
+  font-weight: 700;
+}
+
+.fiche-actions__bloc > p {
+  margin-top: 8px;
+  font-size: 0.9375rem;
+  color: var(--encre-2);
+}
+
+.fiche-actions__bloc .pratique {
+  margin-top: 14px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.fiche-actions__note {
+  padding: 4px 4px 0;
+  font-size: var(--t-2);
+  color: var(--encre-3);
+}
+
+.fiche-homonymes {
+  max-width: 760px;
+  margin-top: 56px;
+}
+
+.fiche-homonymes h2 {
+  margin-bottom: 14px;
+  font-size: var(--t-5);
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .fiche-page__grille {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .fiche-actions {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .fiche-page {
+    padding-top: 16px;
+  }
+
+  .fiche {
+    margin-inline: calc(var(--gouttiere) * -1 + 8px);
+    padding: 24px 18px 24px;
+  }
+
+  .fiche__reference strong {
+    font-size: var(--t-4);
+  }
+
+  .fiche__identite {
+    padding-top: 22px;
+  }
+
+  .fiche__nom {
+    max-width: none;
+    padding-right: 0;
+  }
+
+  .tampon {
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-self: start;
+    display: inline-grid;
+    margin: 18px 0 0 6px;
+    padding: 8px 14px 7px;
+  }
+
+  .tampon__mot {
+    font-size: 22px;
+  }
+
+  .fiche__infos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 16px;
+  }
+}
+
+@media print {
+  .entete,
+  .tricolore,
+  .pied,
+  .fil,
+  .fiche-actions,
+  .fiche-homonymes {
+    display: none !important;
+  }
+
+  .fiche {
+    border: 0;
+    box-shadow: none;
+  }
+}

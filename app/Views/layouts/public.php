@@ -26,6 +26,9 @@ $liens = [
     <title><?= e($titreComplet) ?></title>
     <meta name="description" content="<?= e($description) ?>">
     <meta name="theme-color" content="#ffffff">
+    <?php if (!empty($robots)): ?>
+        <meta name="robots" content="<?= e($robots) ?>">
+    <?php endif; ?>
     <meta property="og:title" content="<?= e($titreComplet) ?>">
     <meta property="og:description" content="<?= e($description) ?>">
     <meta property="og:type" content="website">
