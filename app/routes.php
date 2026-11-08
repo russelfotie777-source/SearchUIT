@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Controllers\FicheController;
 use App\Controllers\InstallationController;
+use App\Controllers\ListeController;
 use App\Controllers\PagesController;
 use App\Controllers\RechercheController;
 use App\Core\Router;
@@ -19,4 +20,5 @@ return static function (Router $routes): void {
     $routes->get('/api/recherche', [RechercheController::class, 'api']);
     $routes->get('/fiche/{ref}', [FicheController::class, 'afficher']);
     $routes->get('/fiche/{ref}/pdf', [FicheController::class, 'pdf']);
+    $routes->get('/liste', [ListeController::class, 'afficher']);
 };
