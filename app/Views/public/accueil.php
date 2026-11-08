@@ -4,6 +4,7 @@
  * @var array<string, mixed>|null $recherche
  * @var array{total: int, disponibles: int, filieres: int, codes: array<string, int>} $statistiques
  * @var list<array{code: string, court: string, complet: string}> $legende
+ * @var list<array<string, mixed>> $documents
  * @var array<string, string> $site
  */
 
@@ -91,6 +92,22 @@ $miseAJour = $site['liste_mise_a_jour'] ?? '';
         </aside>
     </div>
 </section>
+
+<?php if ($documents !== []): ?>
+    <section class="derniers-documents" aria-labelledby="titre-documents">
+        <div class="conteneur">
+            <div class="derniers-documents__entete">
+                <h2 id="titre-documents">Derniers documents publiés</h2>
+                <a href="<?= e(url('documents')) ?>">Tous les documents</a>
+            </div>
+            <ul class="documents__liste">
+                <?php foreach ($documents as $fichier): ?>
+                    <?= App\Core\View::rendre('partials/document', ['fichier' => $fichier]) ?>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </section>
+<?php endif; ?>
 
 <?php if ($groupes !== []): ?>
     <section class="legende" aria-labelledby="titre-legende">

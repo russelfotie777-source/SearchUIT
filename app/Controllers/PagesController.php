@@ -8,6 +8,7 @@ use App\Core\Request;
 use App\Core\Response;
 use App\Core\View;
 use App\Repositories\Etudiants;
+use App\Repositories\Fichiers;
 use App\Repositories\Legende;
 
 final class PagesController
@@ -24,6 +25,7 @@ final class PagesController
             'recherche' => $saisie !== '' ? Etudiants::rechercher($saisie) : null,
             'statistiques' => $statistiques,
             'legende' => Legende::utilisee($statistiques['codes']),
+            'documents' => Fichiers::derniersPublics(3),
             'scripts' => ['js/recherche.js'],
         ]));
     }
