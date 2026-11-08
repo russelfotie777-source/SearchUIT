@@ -635,3 +635,683 @@
     min-width: 0;
   }
 }
+
+/* ---------- Espace fichiers ---------- */
+
+.fil-drive ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+}
+
+.fil-drive li {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--encre-3);
+}
+
+.fil-drive a,
+.fil-drive h1 {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: var(--t-6);
+  font-weight: 550;
+  line-height: 1;
+}
+
+.fil-drive a {
+  color: var(--encre-2);
+  text-decoration: none;
+}
+
+.fil-drive a:hover {
+  background: var(--fond);
+  color: var(--encre);
+}
+
+.fil-drive h1 {
+  color: var(--encre);
+  font-weight: 650;
+}
+
+.fil-drive li:first-child a,
+.fil-drive li:first-child h1 {
+  margin-left: -10px;
+}
+
+.fil-drive .est-cible {
+  background: #d3ecdb;
+  color: var(--vert-fonce);
+}
+
+.vue-bascule {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--trait-fort);
+  border-radius: 999px;
+}
+
+.vue-bascule__bouton {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--encre-2);
+  cursor: pointer;
+}
+
+.vue-bascule__bouton[aria-pressed="true"] {
+  background: #d3ecdb;
+  color: var(--vert-fonce);
+}
+
+.drive__section {
+  margin: 20px 0 12px;
+  font-size: var(--t-2);
+  font-weight: 650;
+  color: var(--encre-2);
+}
+
+/* Dossiers en cartes, comme dans Drive */
+
+.drive__dossiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.dossier-carte {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  background: var(--fond);
+  transition: background-color 0.12s, box-shadow 0.12s;
+}
+
+.dossier-carte:hover {
+  background: var(--fond-2);
+}
+
+.dossier-carte.est-cible {
+  background: #d3ecdb;
+  box-shadow: inset 0 0 0 2px var(--vert);
+}
+
+.dossier-carte.est-tire,
+.fichier.est-tire {
+  opacity: 0.45;
+}
+
+.dossier-carte__lien {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  padding: 12px 4px 12px 16px;
+  color: var(--encre);
+  text-decoration: none;
+}
+
+.dossier-carte__lien:hover {
+  color: var(--encre);
+}
+
+.dossier-carte__lien .icone {
+  grid-row: 1 / 3;
+  width: 22px;
+  height: 22px;
+  color: var(--encre-2);
+  fill: rgb(59 82 70 / 0.12);
+}
+
+.dossier-carte__nom {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dossier-carte__compte {
+  font-size: var(--t-1);
+  color: var(--encre-3);
+}
+
+.dossier-carte .menu {
+  margin-right: 4px;
+}
+
+/* Fichiers en liste */
+
+.drive__fichiers {
+  display: grid;
+}
+
+.drive__entete,
+.fichier {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 130px 150px 90px 48px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 8px 0 12px;
+}
+
+.drive__entete {
+  height: 40px;
+  border-bottom: 1px solid var(--trait);
+  font-size: var(--t-2);
+  font-weight: 600;
+  color: var(--encre-2);
+}
+
+.fichier {
+  min-height: 56px;
+  border-bottom: 1px solid var(--trait);
+  font-size: var(--t-2);
+  color: var(--encre-2);
+  transition: background-color 0.1s;
+}
+
+.fichier:hover {
+  background: #f6f9f7;
+}
+
+.fichier__nom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.fichier__nom .type-fichier {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.fichier__nom .type-fichier .icone {
+  width: 18px;
+  height: 18px;
+}
+
+.fichier__texte {
+  display: grid;
+  min-width: 0;
+}
+
+.fichier__texte a {
+  overflow: hidden;
+  color: var(--encre);
+  font-size: 0.9375rem;
+  font-weight: 550;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fichier__texte a:hover {
+  text-decoration: underline;
+}
+
+.fichier__texte small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--t-1);
+  color: var(--encre-3);
+}
+
+.fichier__texte small .icone {
+  width: 12px;
+  height: 12px;
+}
+
+.visibilite {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px 0 8px;
+  border: 1px solid var(--trait-fort);
+  border-radius: 999px;
+  background: var(--papier);
+  color: var(--encre-3);
+  font-size: var(--t-1);
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.visibilite:hover {
+  border-color: var(--encre-3);
+  color: var(--encre);
+}
+
+.visibilite.est-publique {
+  border-color: transparent;
+  background: var(--vert-pale);
+  color: var(--vert-fonce);
+}
+
+.visibilite.est-publique:hover {
+  border-color: var(--vert);
+}
+
+/* Fichiers en grille */
+
+.drive--grille .drive__entete {
+  display: none;
+}
+
+.drive--grille .drive__fichiers {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.drive--grille .fichier {
+  position: relative;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "nom nom"
+    "visibilite actions"
+    "date taille";
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--trait);
+  border-radius: 12px;
+  background: var(--papier);
+}
+
+.drive--grille .fichier__nom {
+  grid-area: nom;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.drive--grille .fichier__nom .type-fichier {
+  width: 100%;
+  height: 96px;
+  border-radius: 8px;
+}
+
+.drive--grille .fichier__nom .type-fichier .icone {
+  width: 36px;
+  height: 36px;
+  stroke-width: 1.4;
+}
+
+.drive--grille .fichier__texte {
+  width: 100%;
+}
+
+.drive--grille .fichier > :nth-child(2) {
+  grid-area: visibilite;
+}
+
+.drive--grille .fichier__actions {
+  grid-area: actions;
+}
+
+.drive--grille .fichier__date {
+  grid-area: date;
+  font-size: var(--t-1);
+}
+
+.drive--grille .fichier__taille {
+  grid-area: taille;
+  font-size: var(--t-1);
+  text-align: right;
+}
+
+/* Dossier vide : grande zone de dépôt */
+
+.drive-vide {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+  padding: 64px 24px;
+  border: 2px dashed var(--trait-fort);
+  border-radius: 16px;
+  background: var(--papier);
+  color: var(--encre-2);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.drive-vide:hover {
+  border-color: var(--vert);
+  background: #f7fbf8;
+}
+
+.drive-vide .icone {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 4px;
+  color: var(--vert);
+  stroke-width: 1.3;
+}
+
+.drive-vide strong {
+  font-size: var(--t-5);
+  color: var(--encre);
+}
+
+.drive-vide span:not(.btn) {
+  max-width: 52ch;
+}
+
+.drive-vide .btn {
+  margin-top: 12px;
+}
+
+/* Voile de dépôt : toute la page accepte les fichiers */
+
+.depot-voile {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(0 119 46 / 0.12);
+  pointer-events: none;
+}
+
+.depot-voile[hidden] {
+  display: none;
+}
+
+.depot-voile__cadre {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 28px 36px;
+  border-radius: 16px;
+  background: var(--vert-action);
+  color: #fff;
+  font-size: var(--t-4);
+  text-align: center;
+  box-shadow: var(--ombre-3);
+  animation: toast-entree 0.2s var(--courbe);
+}
+
+.depot-voile__cadre .icone {
+  width: 44px;
+  height: 44px;
+  stroke-width: 1.5;
+}
+
+/* Panneau des importations, en bas à droite */
+
+.televersements {
+  position: fixed;
+  right: 24px;
+  bottom: 0;
+  z-index: 45;
+  width: min(380px, calc(100vw - 32px));
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  background: var(--papier);
+  box-shadow: var(--ombre-3);
+}
+
+.televersements__entete {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 8px 8px 18px;
+  background: var(--encre);
+  color: #fff;
+}
+
+.televersements__entete h2 {
+  flex: 1;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.televersements__entete .btn {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+}
+
+.televersements__entete .btn:hover {
+  background: rgb(255 255 255 / 0.12);
+  color: #fff;
+}
+
+.televersements.est-replie [data-televersements-replier] .icone {
+  transform: rotate(180deg);
+}
+
+.televersements.est-replie .televersements__liste {
+  display: none;
+}
+
+.televersements__liste {
+  max-height: 320px;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.televersement {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  align-items: center;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--trait);
+  font-size: var(--t-2);
+}
+
+.televersement__nom {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.televersement__etat {
+  color: var(--encre-3);
+  font-size: var(--t-1);
+  font-weight: 600;
+}
+
+.televersement__barre {
+  grid-column: 1 / -1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--fond-2);
+}
+
+.televersement__barre span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--vert);
+  transition: width 0.15s;
+}
+
+.televersement.est-termine .televersement__etat {
+  color: var(--vert-action);
+}
+
+.televersement.est-termine .televersement__barre span {
+  width: 100%;
+}
+
+.televersement.est-en-erreur .televersement__etat {
+  grid-column: 1 / -1;
+  color: var(--rouge-action);
+  font-weight: 500;
+}
+
+.televersement.est-en-erreur .televersement__barre {
+  display: none;
+}
+
+.televersement__action {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+/* Choix d'un dossier de destination */
+
+.choix-dossier {
+  display: grid;
+  max-height: 320px;
+  margin-top: 16px;
+  overflow-y: auto;
+  border: 1px solid var(--trait);
+  border-radius: 10px;
+}
+
+.choix-dossier__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding-right: 12px;
+  border-bottom: 1px solid var(--trait);
+  cursor: pointer;
+}
+
+.choix-dossier__option:last-child {
+  border-bottom: 0;
+}
+
+.choix-dossier__option:has(input:checked) {
+  background: var(--vert-pale);
+  font-weight: 600;
+}
+
+/* Corbeille */
+
+.corbeille__note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--fond);
+  font-size: var(--t-2);
+  color: var(--encre-2);
+}
+
+.corbeille {
+  list-style: none;
+}
+
+.corbeille__ligne {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--trait);
+}
+
+.corbeille__texte {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.corbeille__texte strong {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.corbeille__texte small {
+  font-size: var(--t-2);
+  color: var(--encre-3);
+}
+
+.corbeille__detruire {
+  color: var(--rouge-action);
+}
+
+@media (max-width: 900px) {
+  .drive__entete {
+    display: none;
+  }
+
+  .fichier {
+    grid-template-columns: minmax(0, 1fr) auto 44px;
+    grid-template-areas:
+      "nom nom actions"
+      "visibilite date actions";
+    gap: 6px 12px;
+    padding: 10px 4px 10px 8px;
+  }
+
+  .fichier__nom {
+    grid-area: nom;
+  }
+
+  .fichier > :nth-child(2) {
+    grid-area: visibilite;
+    padding-left: 44px;
+  }
+
+  .fichier__date {
+    grid-area: date;
+    font-size: var(--t-1);
+    text-align: right;
+  }
+
+  .fichier__taille {
+    display: none;
+  }
+
+  .fichier__actions {
+    grid-area: actions;
+  }
+
+  .admin-titre__actions .btn span {
+    display: none;
+  }
+
+  .admin-titre__actions .btn--secondaire,
+  .admin-titre__actions .btn--primaire {
+    width: 44px;
+    padding: 0;
+  }
+
+  .fil-drive a,
+  .fil-drive h1 {
+    font-size: var(--t-5);
+  }
+
+  .corbeille__ligne {
+    flex-wrap: wrap;
+  }
+
+  .corbeille__texte {
+    flex-basis: calc(100% - 60px);
+  }
+
+  .televersements {
+    right: 8px;
+    width: calc(100vw - 16px);
+  }
+}
