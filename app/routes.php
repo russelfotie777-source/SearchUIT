@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Controllers\Admin\AccueilController as AdminAccueil;
 use App\Controllers\Admin\ConnexionController;
+use App\Controllers\Admin\EtudiantsController;
 use App\Controllers\Admin\FichiersController;
 use App\Controllers\Admin\ImportsController;
 use App\Controllers\DocumentsController;
@@ -50,4 +51,10 @@ return static function (Router $routes): void {
     $routes->post('/admin/imports/analyser', [ImportsController::class, 'analyser']);
     $routes->post('/admin/imports', [ImportsController::class, 'importer']);
     $routes->post('/admin/imports/{id}/annuler', [ImportsController::class, 'annuler']);
+
+    // Étudiants en ligne et historique.
+    $routes->get('/admin/etudiants', [EtudiantsController::class, 'index']);
+    $routes->post('/admin/etudiants', [EtudiantsController::class, 'creer']);
+    $routes->post('/admin/etudiants/{id}/{action}', [EtudiantsController::class, 'action']);
+    $routes->get('/admin/historique', [EtudiantsController::class, 'historique']);
 };
