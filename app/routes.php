@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Controllers\Admin\AccueilController as AdminAccueil;
 use App\Controllers\Admin\ConnexionController;
+use App\Controllers\Admin\FichiersController;
 use App\Controllers\DocumentsController;
 use App\Controllers\FicheController;
 use App\Controllers\InstallationController;
@@ -33,4 +34,14 @@ return static function (Router $routes): void {
     $routes->get('/admin/connexion', [ConnexionController::class, 'afficher']);
     $routes->post('/admin/connexion', [ConnexionController::class, 'connecter']);
     $routes->post('/admin/deconnexion', [ConnexionController::class, 'deconnecter']);
+
+    // Espace fichiers.
+    $routes->get('/admin/fichiers', [FichiersController::class, 'index']);
+    $routes->post('/admin/fichiers/televerser', [FichiersController::class, 'televerser']);
+    $routes->get('/admin/fichiers/{id}/ouvrir', [FichiersController::class, 'ouvrir']);
+    $routes->post('/admin/fichiers/{id}/{action}', [FichiersController::class, 'actionFichier']);
+    $routes->post('/admin/dossiers', [FichiersController::class, 'creerDossier']);
+    $routes->post('/admin/dossiers/{id}/{action}', [FichiersController::class, 'actionDossier']);
+    $routes->get('/admin/corbeille', [FichiersController::class, 'corbeille']);
+    $routes->post('/admin/corbeille/vider', [FichiersController::class, 'viderCorbeille']);
 };
